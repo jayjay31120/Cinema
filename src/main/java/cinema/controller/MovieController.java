@@ -56,6 +56,8 @@ public class MovieController {
 
 	}
 
+	
+	
 
 	@GetMapping("/findByDirector")
 	public Set<Movie> findByDirector(@RequestParam("d") int idDirector) {
@@ -71,6 +73,8 @@ public class MovieController {
 		//	}
 		//	return Collections.emptySet() ;
 	}
+	
+	
 	//	
 	//	//	@PostMapping("/setDirector")
 	//	public Optional<Movie> setDirector(@RequestParam("d") int idDirector, @RequestParam("m") int idMovie) {

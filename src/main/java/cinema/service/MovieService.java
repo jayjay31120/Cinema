@@ -8,6 +8,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import cinema.persistence.entity.Movie;
 import cinema.persistence.repository.MovieRepository;
@@ -57,6 +58,18 @@ public class MovieService implements IMovieService {
 		var director = personRepository.findById(idDirector);
 		return director.map(d-> movieRepository.findByDirector(d)).orElseGet(()->Collections.emptySet());
 	}
+	
+	
+	
+	
+	@PostMapping("/setDirector")
+	public Optional<Movie> setDirector(int idDirector,int idMovie)
+	{
+		return null;
+	}
+	
+	
+	
 	
 	
 	

@@ -15,7 +15,6 @@ public interface PersonRepository extends JpaRepository<Person, Integer> {
 
 
 	Set<Person> findByName(String name);
-
 	Set<Person>findByNameContaining(String name);
 	Set<Person>findByNameEndingWith(String name);
 
