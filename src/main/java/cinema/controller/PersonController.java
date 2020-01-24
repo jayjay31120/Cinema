@@ -1,81 +1,64 @@
 package cinema.controller;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import cinema.persistence.entity.Movie;
 import cinema.persistence.entity.Person;
-import cinema.service.iPersonService;
+import cinema.service.IPersonService;
 
+@RestController
+@RequestMapping("/api/person")
 public class PersonController {
-	
+
 	@Autowired
-	iPersonService personService;
-	
+	IPersonService personService;
+
 
 	@GetMapping
 	@ResponseBody
 	public List<Person> getAllPersons(){
 		return personService.getAllPersons();
 	}
-	@GetMapping("/byAtor")
+
+	@GetMapping("/{id}")
 	@ResponseBody
-	public Set<Person> personByPartiaTitle (@RequestParam("p") String partialName){
-	return personService.getMovieByPartialTitle(partialName); 
+	public Optional<Person> getById (@PathVariable("id") int id){
+		return personService.getById(id); 
+	}
+
+	@PostMapping
+	@ResponseBody
+	public Person addPerson(@RequestBody Person person){
+		return personService.addActor(person);
+	}
+
+
+	@DeleteMapping("/deletePerson/{id}")
+	public Set <Person> deleteActor(@PathVariable("id") int id){
+		return personService.deleteActor(id);
+	}
+
+
+	@GetMapping("/searchPersonByPartialName")
+	@ResponseBody
+	Set<Person> searchByPersonAndBirth(@RequestParam("n") String partialName){
+		return personService.getByTitleAndYear(partialName);
+
 	}
 	
-	@PutMapping("/addPerson")
-	public Set<Person> addActor(){
-		return personService.addActor();
-	}
 	
-	
-	@DeleteMapping("/deletePerson")
-	public Set <Person> deleteActor(){
-		return personService.deleteActor();
-	}
-	
-	
-	
-	
-	//	public Optional<Movie> setDirector(@RequestParam("d") int idDirector, @RequestParam("m") int idMovie) {
-	//	var movie = movieRepository.findById(idMovie);
-	//	var director = personRepository.findById(idDirector);
-	//	if (movie.isPresent() && director.isPresent()) {		
-	//	movie.get().setDirector(director.get());
-	//	movieRepository.flush();
-	//	}
-	//	return movie;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	@PostMapping
-//	@ResponseBody
-//	public Person addPerson(@RequestBody Person person) {
-//		
-//	}
-//		public Movie addMovie(@RequestBody Movie movie) {
-//			//		Movie moviesaved = movieRepository.save(movie);
-//			//		movieRepository.flush();
-//			//		return moviesaved;
-//		//tofo
-//		return null;
-//	}
 
 
 }

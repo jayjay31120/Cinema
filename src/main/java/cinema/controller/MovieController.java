@@ -22,7 +22,6 @@ import cinema.service.IMovieService;
 
 @RestController
 @RequestMapping("/api/movies")
-
 public class MovieController {
 
 	@Autowired

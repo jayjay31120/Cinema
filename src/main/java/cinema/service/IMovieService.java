@@ -4,12 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import cinema.persistence.entity.Movie;
-import cinema.persistence.entity.Person;
-import cinema.persistence.repository.MovieRepository;
-import cinema.persistence.repository.PersonRepository;
+
 
 public interface IMovieService {
 
@@ -25,3 +21,4 @@ public interface IMovieService {
 	
 	
 }
+

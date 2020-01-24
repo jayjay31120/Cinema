@@ -1,5 +1,6 @@
 package cinema.persistence.repository;
 
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,8 +20,8 @@ public interface PersonRepository extends JpaRepository<Person, Integer> {
 	Set<Person>findByNameEndingWith(String name);
 
 	
-	@Query ("select p from Person p where extract(year from birthdate) = ?1")
 	Set<Person>findbyBirthdateYear (int year);
+	Set<Person> delete(Optional<Person> person1);
 	
 	
 }
