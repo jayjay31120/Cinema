@@ -1,4 +1,4 @@
-package cinema.service.impl;
+package cinema.service;
 
 import java.util.List;
 import java.util.Optional;
