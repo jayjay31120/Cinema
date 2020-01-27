@@ -17,6 +17,8 @@ public interface IPersonService {
 
 	Person addPerson(Person person);
 
-	Optional<Person> deleteActor(int id);
+	Optional<Person> deletePerson(int id);
+
+	Optional<Person> getByPartialName(String partialName);
 
 }

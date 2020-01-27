@@ -35,39 +35,33 @@ public class PersonService implements cinema.controller.IPersonService{
 		if (person.isPresent()) {
 			return person;}
 		return null; 
-			
-		}
+
+	}
 
 	@Override
 	public Person addPerson(Person person) {
 		Person person1 = personRepository.save(person);
 		return person1;
 	}
+
 	@Override
-	public Optional<Person> deleteActor(int id) {
-		// TODO Auto-generated method stub
+	public Optional<Person> getByPartialName(String partialName) {
+		var person1 = personRepository.findByNameContaining(partialName);
+		if (person1.isPresent()) { 
+			return personRepository.findByNameContaining(partialName);			
+		}
+
 		return null;
 	}
-
-
-
-//	@Override
-//	public Optional <Person> deleteActor(int id) {
-//		var person1 =  personRepository.findById(id);
-//		if (person1.isPresent()) {			
-//		
-//		return personRepository.deleteById(person1)};
-//		return null;
-//	}
-
-//	@Override
-//	public Set<Person> getByTitleAndYear(String partialName) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	} 
-//
-//
-//
-//
-//
+@Override
+public Optional<Person> deletePerson(int id) {
+	var person1= personRepository.findById(id);
+	if (person1.isPresent()) {
+		return personRepository.deleteById(person1)	;}		
+	return null;
 }
+
+
+
+}
+

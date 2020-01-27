@@ -48,18 +48,18 @@ public class PersonController {
 
 
 	@DeleteMapping("/deletePerson/{id}")
-	public Optional<Person> deleteActor(@PathVariable("id") int id){
-		return personService.deleteActor(id);
+	public Optional<Person> deletePerson(@PathVariable("id") int id){
+		return personService.deletePerson(id);
 	}
 
 
-//	@GetMapping("/searchPersonByPartialName")
-//	@ResponseBody
-//	Set<Person> searchByPersonAndBirth(@RequestParam("n") String partialName){
-//		return personService.getByTitleAndYear(partialName);
-//
-//	}
-//	
+	@GetMapping("/searchPersonByPartialName")
+	@ResponseBody
+	public Optional<Person> searchByPersonByPartialName(@RequestParam("n") String partialName){
+		return personService.getByPartialName(partialName);
+
+	}
+	
 	
 
 
