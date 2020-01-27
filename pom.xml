@@ -21,12 +21,12 @@
 	</properties>
 
 	<dependencies>
+	<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-
-		</dependency>
+</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -70,7 +70,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.18</version>
+				<version>8.0.18</version>
 
 		</dependency>
 		<dependency>
@@ -102,4 +102,4 @@
 			</plugin>
 		</plugins>
 	</build>
-</project>
+</project> 
