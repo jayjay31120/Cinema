@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import cinema.persistence.entity.Person;
-
+import cinema.service.IPersonService;
 import cinema.service.impl.PersonService;
 
 
@@ -55,7 +55,7 @@ public class PersonController {
 
 	@GetMapping("/searchPersonByPartialName")
 	@ResponseBody
-	public Optional<Person> searchByPersonByPartialName(@RequestParam("n") String partialName){
+	public Set<Person> searchByPersonByPartialName(@RequestParam("n") String partialName){
 		return personService.getByPartialName(partialName);
 
 	}
