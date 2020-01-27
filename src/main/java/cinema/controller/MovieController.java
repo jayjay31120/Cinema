@@ -18,22 +18,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import cinema.persistence.entity.Movie;
-import cinema.service.IMovieService;
 
 @RestController
 @RequestMapping("/api/movies")
+
 public class MovieController {
 
 	@Autowired
-	IMovieService movieService;
+	cinema.service.IMovieService movieService;
 
 	@GetMapping
 	@ResponseBody
 	public List<Movie> AllMovies() {
 		return movieService.getAllMovies();
 	}
-	
-	
+
+
 	@GetMapping("/{id}")
 	@ResponseBody
 	public Optional<Movie> movieById(@PathVariable("") int id) {
@@ -53,8 +53,6 @@ public class MovieController {
 
 	}
 
-	
-	
 
 	@GetMapping("/findByDirector")
 	public Set<Movie> findByDirector(@RequestParam("d") int idDirector) {
@@ -70,8 +68,6 @@ public class MovieController {
 		//	}
 		//	return Collections.emptySet() ;
 	}
-	
-	
 	//	
 	//	//	@PostMapping("/setDirector")
 	//	public Optional<Movie> setDirector(@RequestParam("d") int idDirector, @RequestParam("m") int idMovie) {
