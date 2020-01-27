@@ -19,6 +19,9 @@ public class Person {
 	private Integer id;
 	private String name;
 	private LocalDate birthdate;
+	private Integer age;
+	private String nationalities;
+	private String biography;
 	
 
 
@@ -31,6 +34,17 @@ public class Person {
 
 
 
+	public Person(String name, LocalDate birthdate, Integer age, String nationalities, String biography) {
+		super();
+		this.name = name;
+		this.birthdate = birthdate;
+		this.age = age;
+		this.nationalities = nationalities;
+		this.biography = biography;
+	}
+
+
+
 	public Person(String name) {
 		this(name, null);
 	}
@@ -38,9 +52,6 @@ public class Person {
 	public Person() {
 		super();
 	}
-
-
-
 
 	@Override
 	public String toString() {
@@ -52,10 +63,21 @@ public class Person {
 				.append(id)	
 				.toString();
 	}	
-
-
-
-
+	public Person(Integer id, String name, LocalDate birthdate) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.birthdate = birthdate;
+	}
+	public Person(Integer id, String name, LocalDate birthdate, Integer age, String nationalities, String biography) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.birthdate = birthdate;
+		this.age = age;
+		this.nationalities = nationalities;
+		this.biography = biography;
+	}
 	@Id
 	@Column(name = "ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -81,11 +103,42 @@ public class Person {
 		this.birthdate = birthdate;
 	}
 
-	public Person(Integer id, String name, LocalDate birthdate) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.birthdate = birthdate;
+
+
+@Column(name ="age")
+	public Integer getAge() {
+		return age;
+	}
+
+
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+
+
+	@Column(name ="nationalities")
+	public String getNationalities() {
+		return nationalities;
+	}
+
+
+
+	public void setNationalities(String nationalities) {
+		this.nationalities = nationalities;
+	}
+
+
+	@Column(name ="biography")
+	public String getBiography() {
+		return biography;
+	}
+
+
+
+	public void setBiography(String biography) {
+		this.biography = biography;
 	}
 
 

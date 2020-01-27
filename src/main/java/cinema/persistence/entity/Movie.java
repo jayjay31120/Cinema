@@ -27,7 +27,7 @@ public class Movie {
 	private Person director;
 	private List<Person> actors;
 	private String genre;
-	private Integer rating;
+	private Float rating;
 	private String format;
 	private String classification;
 	private String synopsis;
@@ -51,6 +51,78 @@ public class Movie {
 
 	
 
+	public Movie(String title, Integer year, Integer duration, String genre, String format, String classification,
+			String synopsis, String color) {
+		super();
+		this.title = title;
+		this.year = year;
+		this.duration = duration;
+		this.genre = genre;
+		this.format = format;
+		this.classification = classification;
+		this.synopsis = synopsis;
+		this.color = color;
+	}
+	
+
+
+	
+
+
+
+	
+
+
+	public Movie(String title, Integer year, Integer duration, String genre, String format, String classification) {
+		super();
+		this.title = title;
+		this.year = year;
+		this.duration = duration;
+		this.genre = genre;
+		this.format = format;
+		this.classification = classification;
+	}
+
+	public Movie(String title, Integer year, Integer duration, String format) {
+		super();
+		this.title = title;
+		this.year = year;
+		this.duration = duration;
+		this.format = format;
+	}
+
+	public Movie(String title, Integer year, Integer duration, Person director, String genre, Float rating,
+			String format, String classification, String synopsis, String color) {
+		super();
+		this.title = title;
+		this.year = year;
+		this.duration = duration;
+		this.director = director;
+		this.genre = genre;
+		this.rating = rating;
+		this.format = format;
+		this.classification = classification;
+		this.synopsis = synopsis;
+		this.color = color;
+	}
+
+
+
+	public Movie(Integer id, String title, Integer year, Integer duration, String genre, Float rating, String format,
+			String classification, String synopsis, String color) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.year = year;
+		this.duration = duration;
+		this.genre = genre;
+		this.rating = rating;
+		this.format = format;
+		this.classification = classification;
+		this.synopsis = synopsis;
+		this.color = color;
+	}
+
 	public Movie(String title, Integer year, Integer duration, Person director) {
 		this(null, title, year, duration, director);
 	}
@@ -66,10 +138,9 @@ public class Movie {
 
 	
 	
-	
 
 	public Movie(Integer id, String title, Integer year, Integer duration, Person director, List<Person> actors,
-			String genre, Integer rating, String format, String classification, String synopsis, String color) {
+			String genre, Float rating, String format, String classification, String synopsis, String color) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -77,6 +148,41 @@ public class Movie {
 		this.duration = duration;
 		this.director = director;
 		this.actors = new ArrayList<>();
+		this.genre = genre;
+		this.rating = rating;
+		this.format = format;
+		this.classification = classification;
+		this.synopsis = synopsis;
+		this.color = color;
+	}
+
+	
+
+
+	
+
+
+
+	public Movie(String title, Integer year, Integer duration, String genre, Float rating, String format,
+			String classification, String synopsis, String color) {
+		super();
+		this.title = title;
+		this.year = year;
+		this.duration = duration;
+		this.genre = genre;
+		this.rating = rating;
+		this.format = format;
+		this.classification = classification;
+		this.synopsis = synopsis;
+		this.color = color;
+	}
+
+	public Movie(String title, Integer year, List<Person> actors, String genre, Float rating, String format,
+			String classification, String synopsis, String color) {
+		super();
+		this.title = title;
+		this.year = year;
+		this.actors = actors;
 		this.genre = genre;
 		this.rating = rating;
 		this.format = format;
@@ -158,11 +264,11 @@ public class Movie {
 	}
 
 	@Column(name = "rating")
-	public float getRating() {
+	public Float getRating() {
 		return rating;
 	}
 
-	public void setRating(Integer rating) {
+	public void setRating(Float rating) {
 		this.rating = rating;
 	}
 
@@ -207,13 +313,7 @@ public class Movie {
 	
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder(title);
-		return builder.append(" (")
-				.append(year)
-				.append(") ")
-				.append("#")
-				.append(id)					
-				.toString();
+		return "Movie [id=" + id + ", title=" + title + ", year=" + year + "]";
 	}
 	
 
