@@ -8,7 +8,9 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import cinema.persistence.entity.Movie;
 import cinema.persistence.repository.MovieRepository;
@@ -65,13 +67,52 @@ public class MovieService implements IMovieService {
 	@PostMapping("/setDirector")
 	public Optional<Movie> setDirector(int idDirector,int idMovie)
 	{
-		return null;
+		var movie = movieRepository.findById(idMovie);
+		var director = personRepository.findById(idDirector);
+		if (movie.isPresent() && director.isPresent()) {		
+		movie.get().setDirector(director.get());
+		movieRepository.flush();
+		}
+		return movie;
 	}
 	
 	
+	public Movie addMovie( Movie movie) {
+				Movie moviesaved = movieRepository.save(movie);
+				movieRepository.flush();
+				return moviesaved;
+			}
 	
-	
-	
-	
+	public Optional<Movie> addActor(int idActor, int idMovie) {
+				var movieOpt = movieRepository.findById(idMovie);
+				var actorOpt = personRepository.findById(idActor);
+				if (movieOpt.isPresent() && actorOpt.isPresent()) {
+					movieOpt.get().getActors().add(actorOpt.get());
+				movieRepository.flush();
+				}
+				return movieOpt;
+				
+			}
+
+		public Optional<Movie> modifyMovie(Movie movie) {
+			var optMovie = movieRepository.findById(movie.getId());
+			optMovie.ifPresent(m-> { 
+				m.setTitle(movie.getTitle());
+				m.setYear(movie.getYear());
+				m.setDuration(movie.getDuration());
+				m.setDirector(movie.getDirector());
+			});
+			movieRepository.flush();
+			return optMovie;
+		}
+		
+		public Optional<Movie> deleteMovie(int id) {
+					var movieToDelete = movieRepository.findById(id);
+					movieToDelete.ifPresent(m -> {
+						movieRepository.delete(m);
+						movieRepository.flush();
+					});
+					return movieToDelete;
+		}
 
 }
