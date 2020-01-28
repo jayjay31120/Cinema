@@ -15,4 +15,8 @@ public interface IPersonService {
 	Optional<Person> deletePerson(int id);
 	Set<Person> getByPartialName(String partialName);
 //	Set<Person> getByNationalities(String nationalities);
+	 Set<Person> getByPartialNatio(String natio);
+	 
+	 
+	
 }

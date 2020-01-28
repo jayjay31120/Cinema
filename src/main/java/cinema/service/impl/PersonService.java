@@ -73,11 +73,11 @@ public Set<Person> getByPartialName(String partialName) {
 	var person1 = personRepository.findByNameContaining(partialName);
 	return person1;
 }
-//@Override
-//public Set<Person> getByNationalities(String nationalities) {
-//	var person1 = personRepository.findbyNationalities(nationalities);
-//	return person1;
-//}
+@Override
+public Set<Person> getByPartialNatio(String natio)
+{
+	return personRepository.findByNationalitiesContaining(natio);
+}
 
 
 }

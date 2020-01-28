@@ -24,6 +24,6 @@ public interface PersonRepository extends JpaRepository<Person, Integer> {
 
 	Optional<Person> deleteById(Optional<Person> person1);
 
-	
+	Set<Person>findByNationalitiesContaining(String nation);
 	
 }
