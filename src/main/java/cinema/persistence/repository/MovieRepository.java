@@ -32,7 +32,7 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
 	Set<Movie> findByClassification(String classification);
 	
 	Set<Movie> findByColor(String color);
-	Set<Movie> addMovie(Movie movie);
+//	Set<Movie> addMovie(Movie movie);
 	
 	
 	
