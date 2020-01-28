@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import cinema.persistence.entity.Movie;
+import cinema.persistence.entity.Person;
 import cinema.persistence.repository.MovieRepository;
 import cinema.persistence.repository.PersonRepository;
 import cinema.service.IMovieService;
@@ -67,11 +68,34 @@ public class MovieService implements IMovieService {
 	{
 		return null;
 	}
+
+	@Override
+	public Set<Movie> getByClassification(String classification) {
+		Set<Movie> classif = movieRepository.findByClassification(classification);
 	
-	
-	
-	
-	
-	
+	return  classif;
+	}
+
+	@Override
+	public Set<Movie> getByColor(String color) {
+		Set<Movie> color1 = movieRepository.findByColor(color);
+			return color1;
+	}
+
+	@Override
+	public Movie addMovie(Movie movie) {
+		Movie movie1= movieRepository.save(movie);
+		return movie1;
+	}
+
+	@Override
+    public Optional<Movie> deleteMovie(int id) {
+                var movieToDelete = movieRepository.findById(id);
+                movieToDelete.ifPresent(m -> {
+                    movieRepository.delete(m);
+                    movieRepository.flush();
+                });
+                return movieToDelete;
+    }
 
 }

@@ -49,29 +49,18 @@ public class Movie {
 		this.actors = new ArrayList<>();
 	}
 
-	
-
-	public Movie(String title, Integer year, Integer duration, String genre, String format, String classification,
-			String synopsis, String color) {
+	public Movie(String title, Integer year, Integer duration, String genre, Float rating, String format,
+			String classification, String synopsis) {
 		super();
 		this.title = title;
 		this.year = year;
 		this.duration = duration;
 		this.genre = genre;
+		this.rating = rating;
 		this.format = format;
 		this.classification = classification;
 		this.synopsis = synopsis;
-		this.color = color;
 	}
-	
-
-
-	
-
-
-
-	
-
 
 	public Movie(String title, Integer year, Integer duration, String genre, String format, String classification) {
 		super();
@@ -91,8 +80,12 @@ public class Movie {
 		this.format = format;
 	}
 
+
+
+
+
 	public Movie(String title, Integer year, Integer duration, Person director, String genre, Float rating,
-			String format, String classification, String synopsis, String color) {
+			String format, String classification, String synopsis) {
 		super();
 		this.title = title;
 		this.year = year;
@@ -103,65 +96,30 @@ public class Movie {
 		this.format = format;
 		this.classification = classification;
 		this.synopsis = synopsis;
-		this.color = color;
 	}
 
 
 
-	public Movie(Integer id, String title, Integer year, Integer duration, String genre, Float rating, String format,
-			String classification, String synopsis, String color) {
+	public Movie(Integer id, String title, Integer year, Integer duration, Person director, List<Person> actors,
+			String genre, Float rating, String format, String classification, String synopsis) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.year = year;
 		this.duration = duration;
+		this.director = director;
+		this.actors = actors;
 		this.genre = genre;
 		this.rating = rating;
 		this.format = format;
 		this.classification = classification;
 		this.synopsis = synopsis;
-		this.color = color;
 	}
 
 	public Movie(String title, Integer year, Integer duration, Person director) {
 		this(null, title, year, duration, director);
 	}
-
-	public Movie(Integer id, String title, Integer year, Integer duration, Person director) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.year = year;
-		this.duration = duration;
-		this.director = director;
-	}
-
 	
-	
-
-	public Movie(Integer id, String title, Integer year, Integer duration, Person director, List<Person> actors,
-			String genre, Float rating, String format, String classification, String synopsis, String color) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.year = year;
-		this.duration = duration;
-		this.director = director;
-		this.actors = new ArrayList<>();
-		this.genre = genre;
-		this.rating = rating;
-		this.format = format;
-		this.classification = classification;
-		this.synopsis = synopsis;
-		this.color = color;
-	}
-
-	
-
-
-	
-
-
 
 	public Movie(String title, Integer year, Integer duration, String genre, Float rating, String format,
 			String classification, String synopsis, String color) {
@@ -177,26 +135,52 @@ public class Movie {
 		this.color = color;
 	}
 
-	public Movie(String title, Integer year, List<Person> actors, String genre, Float rating, String format,
-			String classification, String synopsis, String color) {
+	public Movie(Integer id, String title, Integer year, Integer duration, Person director) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.year = year;
+		this.duration = duration;
+		this.director = director;
+	}
+
+	
+	public Movie(String title, Integer year, Integer duration, Person director, List<Person> actors, String genre,
+			Float rating, String format, String classification, String synopsis) {
 		super();
 		this.title = title;
 		this.year = year;
+		this.duration = duration;
+		this.director = director;
 		this.actors = actors;
 		this.genre = genre;
 		this.rating = rating;
 		this.format = format;
 		this.classification = classification;
 		this.synopsis = synopsis;
-		this.color = color;
 	}
-
+	public Movie(String title, Integer year, Integer duration, Person director, List<Person> actors, String genre,
+			String format, String classification, String synopsis) {
+		super();
+		this.title = title;
+		this.year = year;
+		this.duration = duration;
+		this.director = director;
+		this.actors = actors;
+		this.genre = genre;
+		this.format = format;
+		this.classification = classification;
+		this.synopsis = synopsis;
+	}
+	
 	@Id
 	@Column(name = "id", nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getId() {
 		return id;
 	}
+
+	
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -298,23 +282,29 @@ public class Movie {
 		this.synopsis = synopsis;
 	}
 
-	@Column(name ="color")
+
+
+		
+	
+
 	public String getColor() {
 		return color;
 	}
 
 	public void setColor(String color) {
 		this.color = color;
-		
 	}
-	
-	
-	
-	
+
 	@Override
 	public String toString() {
-		return "Movie [id=" + id + ", title=" + title + ", year=" + year + "]";
+		return "Movie [id=" + id + ", title=" + title + ", year=" + year + ", duration=" + duration + ", director="
+				+ director + ", actors=" + actors + ", genre=" + genre + ", rating=" + rating + ", format=" + format
+				+ ", classification=" + classification + ", synopsis=" + synopsis + ", color=" + color + "]";
 	}
+	
+	
+	
+	
 	
 
 

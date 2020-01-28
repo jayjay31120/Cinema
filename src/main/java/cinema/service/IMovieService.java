@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import cinema.persistence.entity.Movie;
+import cinema.persistence.entity.Person;
 
 
 public interface IMovieService {
@@ -16,9 +17,13 @@ public interface IMovieService {
 	Set<Movie> getByTitleAndYear(String title, int year);
 	Set <Movie> getByActor(int idActor);
 	Set<Movie> getByDirector(int idDirector);
+	Set<Movie> getByClassification(String classification);
+	Set<Movie> getByColor(String color);
+	Movie addMovie(Movie movie);
+
+	Optional<Movie> deleteMovie(int id);
 	
 
-	
-	
+
 }
 

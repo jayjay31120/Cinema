@@ -2,6 +2,7 @@ package cinema.persistence.entity.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.awt.Color;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -211,20 +212,20 @@ class TestMovie {
 	@Rollback(false)
 	@Test
 	void testInsert() {
-		Person p = new Person("Clint EastWood", LocalDate.of(1930,5,31), 78, "USA", "beaucoup de films");
-//		Movie movie = new Movie("Gran Torino", 2008, 116, p, "ffff", "4,5", "tous publics", "dddddd", "nb", "dd");
-		Movie movie1 =  new Movie("X-MEN3", 2016, 98, "action", 2.4F, "16/9", "-12ANS", "c'est l'histoire...", "Couleur");
+
+	Movie movie1 =  new Movie("X-MEN3", 2016, 98, "action", 2.4F, "16/9", "-12ANS", "c'est l'histoire...", "couleur" );
+		Movie movie2 = new Movie("La HAINE", 1995, 98 ,"drame", 9.7F, "4/3", "-12ANS,", "gros gros film", "noirEtBlanc");
 		Person p1 = new Person("Nicolas Cage", LocalDate.of(1955, 4, 22), 32, "USA", "beaucoup de films");
 		
 	
 		rm.save(movie1);
+		rm.save(movie2);
 		em.persist(movie1);
-		repoPerson.save(p1);
-		em.persist(p1);
+		em.persist(movie2);
 		
 	
 		System.out.println(movie1);
-
+		System.out.println(movie2);
 	
 	}
 	

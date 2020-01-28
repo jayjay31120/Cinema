@@ -29,6 +29,10 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
 	
 //	Set<Movie>findByActor(Person actor);
 	Set<Movie> findByActors(Person actor);
+	Set<Movie> findByClassification(String classification);
+	
+	Set<Movie> findByColor(String color);
+//	Set<Movie> addMovie(Movie movie);
 	
 	
 	
