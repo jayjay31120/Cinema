@@ -63,7 +63,7 @@ public class PersonController {
 	@GetMapping("/searchByNation")
 	@ResponseBody
 	public Set<Person> getByPartialNatio(@RequestParam("natio") String partialNatio)
-	{				// URL : 
+	{				// URL : localhost:8080/api/person/searchByNation?natio="partialNatio"
 		return personService.getByPartialNatio(partialNatio);
 	}
 	
