@@ -64,7 +64,7 @@ public class MovieService implements IMovieService {
 	
 	
 	
-	@PostMapping("/setDirector")
+	@Override
 	public Optional<Movie> setDirector(int idDirector,int idMovie)
 	{
 		var movie = movieRepository.findById(idMovie);
@@ -76,13 +76,14 @@ public class MovieService implements IMovieService {
 		return movie;
 	}
 	
-	
+	@Override
 	public Movie addMovie( Movie movie) {
 				Movie moviesaved = movieRepository.save(movie);
 				movieRepository.flush();
 				return moviesaved;
 			}
 	
+	@Override
 	public Optional<Movie> addActor(int idActor, int idMovie) {
 				var movieOpt = movieRepository.findById(idMovie);
 				var actorOpt = personRepository.findById(idActor);
@@ -94,6 +95,7 @@ public class MovieService implements IMovieService {
 				
 			}
 
+	@Override
 		public Optional<Movie> modifyMovie(Movie movie) {
 			var optMovie = movieRepository.findById(movie.getId());
 			optMovie.ifPresent(m-> { 
@@ -106,6 +108,7 @@ public class MovieService implements IMovieService {
 			return optMovie;
 		}
 		
+		@Override
 		public Optional<Movie> deleteMovie(int id) {
 					var movieToDelete = movieRepository.findById(id);
 					movieToDelete.ifPresent(m -> {
