@@ -59,8 +59,12 @@ public class PersonController {
 		return personService.getByPartialName(partialName);
 
 	}
-	
-	
+//	@GetMapping("/searchByNationality")
+//	@ResponseBody
+//	public Set<Person> searchByNationalities(@RequestParam("n")String nationality){
+//		return personService.getByNationalities(nationality);
+//	}
+//	
 
 
 }

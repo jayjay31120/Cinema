@@ -213,7 +213,7 @@ class TestMovie {
 	void testInsert() {
 		Person p = new Person("Clint EastWood", LocalDate.of(1930,5,31), 78, "USA", "beaucoup de films");
 //		Movie movie = new Movie("Gran Torino", 2008, 116, p, "ffff", "4,5", "tous publics", "dddddd", "nb", "dd");
-		Movie movie1 =  new Movie("X-MEN3", 2016, 98, "action","16/9", "-12ANS", "c'est l'histoire...", "Couleur");
+		Movie movie1 =  new Movie("X-MEN3", 2016, 98, "action", 2.4F, "16/9", "-12ANS", "c'est l'histoire...", "Couleur");
 		Person p1 = new Person("Nicolas Cage", LocalDate.of(1955, 4, 22), 32, "USA", "beaucoup de films");
 		
 	
