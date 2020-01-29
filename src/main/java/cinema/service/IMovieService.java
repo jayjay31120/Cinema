@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import org.springframework.web.bind.annotation.RequestBody;
+
 import cinema.persistence.entity.Movie;
 import cinema.persistence.entity.Person;
 
@@ -22,7 +24,9 @@ public interface IMovieService {
 	Movie addMovie(Movie movie);
 
 	Optional<Movie> deleteMovie(int id);
-	
+	Optional<Movie> setDirector(int idDirector, int idMovie);
+	Optional<Movie> addActor(int idActor, int idMovie);
+	Optional<Movie> modifyMovie(Movie movie);
 
 
 }

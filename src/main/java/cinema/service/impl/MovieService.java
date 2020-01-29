@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import cinema.persistence.entity.Movie;
 import cinema.persistence.entity.Person;
@@ -60,14 +62,6 @@ public class MovieService implements IMovieService {
 		return director.map(d-> movieRepository.findByDirector(d)).orElseGet(()->Collections.emptySet());
 	}
 	
-	
-	
-	
-	@PostMapping("/setDirector")
-	public Optional<Movie> setDirector(int idDirector,int idMovie)
-	{
-		return null;
-	}
 
 	@Override
 	public Set<Movie> getByClassification(String classification) {
@@ -97,5 +91,44 @@ public class MovieService implements IMovieService {
                 });
                 return movieToDelete;
     }
+	
+	@Override
+	public Optional<Movie> addActor(int idActor, int idMovie)
+	{
+		var movieOpt = movieRepository.findById(idMovie);
+		var actorOpt = personRepository.findById(idActor);
+		if (movieOpt.isPresent() && actorOpt.isPresent()) {
+			movieOpt.get().getActors().add(actorOpt.get());
+		movieRepository.flush();
+		}
+		return movieOpt;
+	}
+	
+	@Override
+	public Optional<Movie> setDirector( int idDirector, int idMovie) 
+	{
+		var movie = movieRepository.findById(idMovie);
+		var director = personRepository.findById(idDirector);
+		if (movie.isPresent() && director.isPresent()) {		
+		movie.get().setDirector(director.get());
+		movieRepository.flush();
+		}
+		return movie;
+	}
 
+	@Override
+	public Optional<Movie> modifyMovie( Movie movie)
+	{
+		var optMovie = movieRepository.findById(movie.getId());
+		optMovie.ifPresent(m-> { 
+			m.setTitle(movie.getTitle());
+			m.setYear(movie.getYear());
+			m.setDuration(movie.getDuration());
+			m.setDirector(movie.getDirector());
+		});
+		movieRepository.flush();
+		return optMovie;
+	}
+	
+	
 }
