@@ -47,37 +47,37 @@ public class PersonService implements cinema.service.IPersonService{
 		return person1;
 	}
 
-//	@Override
-//	public Set <Person> getByPartialName(String partialName) {
-//		var person1 = personRepository.findByNameContaining(partialName);
-//		if (person1.isPresent()) { 
-//			return personRepository.findByNameContaining(partialName);			
-//		}
-//
-//		return null;
-//	}
+	//	@Override
+	//	public Set <Person> getByPartialName(String partialName) {
+	//		var person1 = personRepository.findByNameContaining(partialName);
+	//		if (person1.isPresent()) { 
+	//			return personRepository.findByNameContaining(partialName);			
+	//		}
+	//
+	//		return null;
+	//	}
 
 
-@Override
-public Optional<Person> deletePerson(int id) {
-	var personToDelete = personRepository.findById(id);
-	personToDelete.ifPresent(p -> { 
-		personRepository.delete(p); 
-		personRepository.flush();
+	@Override
+	public Optional<Person> deletePerson(int id) {
+		var personToDelete = personRepository.findById(id);
+		personToDelete.ifPresent(p -> { 
+			personRepository.delete(p); 
+			personRepository.flush();
 		});
-	return personToDelete;     }
+		return personToDelete;     }
 
 
-@Override
-public Set<Person> getByPartialName(String partialName) {
-	var person1 = personRepository.findByNameContaining(partialName);
-	return person1;
-}
-@Override
-public Set<Person> getByPartialNatio(String natio)
-{
-	return personRepository.findByNationalitiesContaining(natio);
-}
+	@Override
+	public Set<Person> getByPartialName(String partialName) {
+		var person1 = personRepository.findByNameContaining(partialName);
+		return person1;
+	}
+	@Override
+	public Set<Person> getByPartialNatio(String natio)
+	{
+		return personRepository.findByNationalitiesContaining(natio);
+	}
 
 
 

@@ -46,8 +46,8 @@ public class MovieController {
 	{
 		return movieService.getMovieById(id);		
 	}
-	
-	
+
+
 
 	@GetMapping("/byTitle")
 	@ResponseBody
@@ -55,8 +55,8 @@ public class MovieController {
 	{
 		return movieService.getMovieByPartialTitle(partialTitle); 
 	}
-	
-	
+
+
 	@GetMapping("/byTitleAndYear")
 	@ResponseBody
 	Set<Movie> findByTitleAndYear(@RequestParam("t") String title,@RequestParam("y") int year)
@@ -70,90 +70,90 @@ public class MovieController {
 	{
 		return movieService.getByDirector(idDirector);
 	}
-		
-		
+
+
 	@GetMapping("/findByActor")
 	public Set <Movie> findByActor(@RequestParam("a") int idActor) 
 	{
 		return movieService.getByActor(idActor);	
 	}
-	
-	
+
+
 	@GetMapping("/findByClassification")
 	public Set<Movie> findByClassification(@RequestParam("c") String classification) 
 	{
 		return movieService.getByClassification(classification);	
 	}
-	
-	
+
+
 	@GetMapping("/findByColor")
 	public Set<Movie> findByColor(@RequestParam("c") String color) 
 	{
 		return movieService.getByColor(color);	
 	}
-	
-	
+
+
 	@PostMapping
 	@ResponseBody
 	public Movie addMovie(@RequestBody Movie movie)
 	{
 		return movieService.addMovie(movie);
 	}
-	
-	
+
+
 	@DeleteMapping("/deleteMovie/{id}")
-    @ResponseBody
-    public Optional<Movie> deleteMovie(@PathVariable("id") int id) 
+	@ResponseBody
+	public Optional<Movie> deleteMovie(@PathVariable("id") int id) 
 	{
-        return movieService.deleteMovie(id);	
+		return movieService.deleteMovie(id);	
 	}
-	
+
 	@PutMapping("/addActor")
 	public Optional<Movie> addActor(@RequestParam("a") int idActor, @RequestParam("m") int idMovie)
 	{
 		return movieService.addActor(idActor, idMovie);
 	}
-	
-		//	if (actor.isPresent()) {
-		//		return movieRepository.findByActors(actor.get());
-		//	}
-		//	return Collections.emptySet() ;
-	
-		@PostMapping("/setDirector")
-		public Optional<Movie> setDirector(@RequestParam("d") int idDirector, @RequestParam("m") int idMovie) 
-		{		
-			return movieService.setDirector(idDirector, idMovie);
-		}
-		
 
-		@PutMapping("/modify")
-		@ResponseBody
-		public Optional<Movie> modifyMovie(@RequestBody Movie movie) 
-		{
-			return movieService.modifyMovie(movie);
-		}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	}
-	//	
-	//
-	//	
-	//	@PostMapping
-	//	@ResponseBody
-	//	public Movie addMovie(@RequestBody Movie movie) {
-	//		Movie moviesaved = movieRepository.save(movie);
-	//		movieRepository.flush();
-	//		return moviesaved;
+	//	if (actor.isPresent()) {
+	//		return movieRepository.findByActors(actor.get());
 	//	}
-	//
-	
-	
-	
+	//	return Collections.emptySet() ;
+
+	@PostMapping("/setDirector")
+	public Optional<Movie> setDirector(@RequestParam("d") int idDirector, @RequestParam("m") int idMovie) 
+	{		
+		return movieService.setDirector(idDirector, idMovie);
+	}
+
+
+	@PutMapping("/modify")
+	@ResponseBody
+	public Optional<Movie> modifyMovie(@RequestBody Movie movie) 
+	{
+		return movieService.modifyMovie(movie);
+	}
+
+
+
+
+
+
+
+
+
+}
+//	
+//
+//	
+//	@PostMapping
+//	@ResponseBody
+//	public Movie addMovie(@RequestBody Movie movie) {
+//		Movie moviesaved = movieRepository.save(movie);
+//		movieRepository.flush();
+//		return moviesaved;
+//	}
+//
+
+
+
 
