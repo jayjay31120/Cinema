@@ -33,6 +33,8 @@ public class Movie {
 	private String synopsis;
 	private String color;
 
+	// a lot TODO here	
+	
 	public Movie() {
 		this(null, null);
 	}
