@@ -4,29 +4,29 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import org.springframework.web.bind.annotation.RequestBody;
 
-import cinema.persistence.entity.Movie;
-import cinema.persistence.entity.Person;
+import cinema.dto.MovieFull;
+import cinema.dto.SimpleMovie;
+
 
 
 public interface IMovieService {
 
 
-	List<Movie> getAllMovies();	
-	Optional<Movie> getMovieById(int id);
-	Set<Movie> getMovieByPartialTitle (String partialTitle);
-	Set<Movie> getByTitleAndYear(String title, int year);
-	Set <Movie> getByActor(int idActor);
-	Set<Movie> getByDirector(int idDirector);
-	Set<Movie> getByClassification(String classification);
-	Set<Movie> getByColor(String color);
-	Movie addMovie(Movie movie);
-
-	Optional<Movie> deleteMovie(int id);
-	Optional<Movie> setDirector(int idDirector, int idMovie);
-	Optional<Movie> addActor(int idActor, int idMovie);
-	Optional<Movie> modifyMovie(Movie movie);
+	List<SimpleMovie> getAllMovies();	
+	Optional<MovieFull> getMovieById(int id);
+	Set<SimpleMovie> getMovieByPartialTitle (String partialTitle);
+	Set<SimpleMovie> getByTitleAndYear(String title, int year);
+	Set <SimpleMovie> getByActor(int idActor);
+	Set<SimpleMovie> getByDirector(int idDirector);
+	Set<SimpleMovie> getByClassification(String classification);
+	Set<SimpleMovie> getByColor(String color);
+	
+	MovieFull addMovie(MovieFull movie);
+	Optional<MovieFull> deleteMovie(int id);
+	Optional<MovieFull> setDirector(int idDirector, int idMovie);
+	Optional<MovieFull> addActor(int idActor, int idMovie);
+	Optional<MovieFull> modifyMovie(MovieFull movie);
 
 
 }

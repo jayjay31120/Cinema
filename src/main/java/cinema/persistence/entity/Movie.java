@@ -3,7 +3,9 @@ package cinema.persistence.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -26,7 +28,7 @@ public class Movie {
 	private Integer duration;
 	private Person director;
 	private List<Person> actors;
-	private String genre;
+	private List<String> genre;
 	private Float rating;
 	private String format;
 	private String classification;
@@ -49,29 +51,6 @@ public class Movie {
 		this.actors = new ArrayList<>();
 	}
 
-	public Movie(String title, Integer year, Integer duration, String genre, Float rating, String format,
-			String classification, String synopsis) {
-		super();
-		this.title = title;
-		this.year = year;
-		this.duration = duration;
-		this.genre = genre;
-		this.rating = rating;
-		this.format = format;
-		this.classification = classification;
-		this.synopsis = synopsis;
-	}
-
-	public Movie(String title, Integer year, Integer duration, String genre, String format, String classification) {
-		super();
-		this.title = title;
-		this.year = year;
-		this.duration = duration;
-		this.genre = genre;
-		this.format = format;
-		this.classification = classification;
-	}
-
 	public Movie(String title, Integer year, Integer duration, String format) {
 		super();
 		this.title = title;
@@ -84,56 +63,10 @@ public class Movie {
 
 
 
-	public Movie(String title, Integer year, Integer duration, Person director, String genre, Float rating,
-			String format, String classification, String synopsis) {
-		super();
-		this.title = title;
-		this.year = year;
-		this.duration = duration;
-		this.director = director;
-		this.genre = genre;
-		this.rating = rating;
-		this.format = format;
-		this.classification = classification;
-		this.synopsis = synopsis;
-	}
-
-
-
-	public Movie(Integer id, String title, Integer year, Integer duration, Person director, List<Person> actors,
-			String genre, Float rating, String format, String classification, String synopsis) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.year = year;
-		this.duration = duration;
-		this.director = director;
-		this.actors = actors;
-		this.genre = genre;
-		this.rating = rating;
-		this.format = format;
-		this.classification = classification;
-		this.synopsis = synopsis;
-	}
-
 	public Movie(String title, Integer year, Integer duration, Person director) {
 		this(null, title, year, duration, director);
 	}
 	
-
-	public Movie(String title, Integer year, Integer duration, String genre, Float rating, String format,
-			String classification, String synopsis, String color) {
-		super();
-		this.title = title;
-		this.year = year;
-		this.duration = duration;
-		this.genre = genre;
-		this.rating = rating;
-		this.format = format;
-		this.classification = classification;
-		this.synopsis = synopsis;
-		this.color = color;
-	}
 
 	public Movie(Integer id, String title, Integer year, Integer duration, Person director) {
 		super();
@@ -144,34 +77,6 @@ public class Movie {
 		this.director = director;
 	}
 
-	
-	public Movie(String title, Integer year, Integer duration, Person director, List<Person> actors, String genre,
-			Float rating, String format, String classification, String synopsis) {
-		super();
-		this.title = title;
-		this.year = year;
-		this.duration = duration;
-		this.director = director;
-		this.actors = actors;
-		this.genre = genre;
-		this.rating = rating;
-		this.format = format;
-		this.classification = classification;
-		this.synopsis = synopsis;
-	}
-	public Movie(String title, Integer year, Integer duration, Person director, List<Person> actors, String genre,
-			String format, String classification, String synopsis) {
-		super();
-		this.title = title;
-		this.year = year;
-		this.duration = duration;
-		this.director = director;
-		this.actors = actors;
-		this.genre = genre;
-		this.format = format;
-		this.classification = classification;
-		this.synopsis = synopsis;
-	}
 	
 	@Id
 	@Column(name = "id", nullable = false)
@@ -237,13 +142,14 @@ public class Movie {
 		this.duration = duration;
 	}
 	
-	
-	@Column(name = "genre")
-	public String getGenre() {
+	@ElementCollection
+	@CollectionTable(joinColumns = @JoinColumn(name = "id_movie"))
+	public List<String> getGenre() {
 		return genre;
 	}
 
-	public void setGenre(String genre) {
+	
+	public void setGenre(List<String> genre) {
 		this.genre = genre;
 	}
 
@@ -273,7 +179,7 @@ public class Movie {
 		this.classification = classification;
 	}
 
-	@Column(name ="synopsis")
+	@Column(nullable = true)
 	public String getSynopsis() {
 		return synopsis;
 	}

@@ -209,25 +209,25 @@ class TestMovie {
 //				);
 //	}
 //	
-	@Rollback(false)
-	@Test
-	void testInsert() {
-
-	Movie movie1 =  new Movie("X-MEN3", 2016, 98, "action", 2.4F, "16/9", "-12ANS", "c'est l'histoire...", "couleur" );
-		Movie movie2 = new Movie("La HAINE", 1995, 98 ,"drame", 9.7F, "4/3", "-12ANS,", "gros gros film", "noirEtBlanc");
-		Person p1 = new Person("Nicolas Cage", LocalDate.of(1955, 4, 22), 32, "USA", "beaucoup de films");
-		
-	
-		rm.save(movie1);
-		rm.save(movie2);
-		em.persist(movie1);
-		em.persist(movie2);
-		
-	
-		System.out.println(movie1);
-		System.out.println(movie2);
-	
-	}
+//	@Rollback(false)
+//	@Test
+//	void testInsert() {
+//
+//	Movie movie1 =  new Movie("X-MEN3", 2016, 98, "action", 2.4F, "16/9", "-12ANS", "c'est l'histoire...", "couleur" );
+//		Movie movie2 = new Movie("La HAINE", 1995, 98 ,"drame", 9.7F, "4/3", "-12ANS,", "gros gros film", "noirEtBlanc");
+//		Person p1 = new Person("Nicolas Cage", LocalDate.of(1955, 4, 22), 32, "USA", "beaucoup de films");
+//		
+//	
+//		rm.save(movie1);
+//		rm.save(movie2);
+//		em.persist(movie1);
+//		em.persist(movie2);
+//		
+//	
+//		System.out.println(movie1);
+//		System.out.println(movie2);
+//	
+//	}
 	
 
 	

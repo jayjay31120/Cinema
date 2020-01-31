@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import cinema.persistence.entity.Movie;
+import cinema.dto.MovieFull;
+import cinema.dto.SimpleMovie;
+
 import cinema.persistence.entity.Person;
 
 @RestController
@@ -34,24 +36,24 @@ public class MovieController {
 
 	@GetMapping
 	@ResponseBody
-	public List<Movie> AllMovies() 
+	public List<SimpleMovie> AllMovies() 
 	{
 		return movieService.getAllMovies();
-	}
+	} 
 
 
 	@GetMapping("/{id}")
 	@ResponseBody
-	public Optional<Movie> movieById(@PathVariable("") int id) 
+	public Optional<MovieFull> movieById(@PathVariable("id") int idMovie) 
 	{
-		return movieService.getMovieById(id);		
+		return movieService.getMovieById(idMovie);		
 	}
 
 
 
 	@GetMapping("/byTitle")
 	@ResponseBody
-	public Set<Movie> movieByPartiaTitle (@RequestParam("t") String partialTitle)
+	public Set<SimpleMovie> movieByPartiaTitle (@RequestParam("t") String partialTitle)
 	{
 		return movieService.getMovieByPartialTitle(partialTitle); 
 	}
@@ -59,35 +61,35 @@ public class MovieController {
 
 	@GetMapping("/byTitleAndYear")
 	@ResponseBody
-	Set<Movie> findByTitleAndYear(@RequestParam("t") String title,@RequestParam("y") int year)
+	Set<SimpleMovie> findByTitleAndYear(@RequestParam("t") String title,@RequestParam("y") int year)
 	{
 		return movieService.getByTitleAndYear(title, year);
 	}
 
 
 	@GetMapping("/findByDirector")
-	public Set<Movie> findByDirector(@RequestParam("d") int idDirector) 
+	public Set<SimpleMovie> findByDirector(@RequestParam("d") int idDirector) 
 	{
 		return movieService.getByDirector(idDirector);
 	}
 
 
 	@GetMapping("/findByActor")
-	public Set <Movie> findByActor(@RequestParam("a") int idActor) 
+	public Set <SimpleMovie> findByActor(@RequestParam("a") int idActor) 
 	{
 		return movieService.getByActor(idActor);	
 	}
 
 
 	@GetMapping("/findByClassification")
-	public Set<Movie> findByClassification(@RequestParam("c") String classification) 
+	public Set<SimpleMovie> findByClassification(@RequestParam("c") String classification) 
 	{
 		return movieService.getByClassification(classification);	
 	}
 
 
 	@GetMapping("/findByColor")
-	public Set<Movie> findByColor(@RequestParam("c") String color) 
+	public Set<SimpleMovie> findByColor(@RequestParam("c") String color) 
 	{
 		return movieService.getByColor(color);	
 	}
@@ -95,32 +97,32 @@ public class MovieController {
 
 	@PostMapping
 	@ResponseBody
-	public Movie addMovie(@RequestBody Movie movie)
+	public MovieFull addMovie(@RequestBody MovieFull movie)
 	{
 		return movieService.addMovie(movie);
 	}
 
+	
 
 	@DeleteMapping("/deleteMovie/{id}")
 	@ResponseBody
-	public Optional<Movie> deleteMovie(@PathVariable("id") int id) 
+	public Optional<MovieFull> deleteMovie(@PathVariable("id") int id) 
 	{
 		return movieService.deleteMovie(id);	
 	}
 
+	
+	
 	@PutMapping("/addActor")
-	public Optional<Movie> addActor(@RequestParam("a") int idActor, @RequestParam("m") int idMovie)
+	public Optional<MovieFull> addActor(@RequestParam("a") int idActor, @RequestParam("m") int idMovie)
 	{
 		return movieService.addActor(idActor, idMovie);
 	}
 
-	//	if (actor.isPresent()) {
-	//		return movieRepository.findByActors(actor.get());
-	//	}
-	//	return Collections.emptySet() ;
+	
 
 	@PostMapping("/setDirector")
-	public Optional<Movie> setDirector(@RequestParam("d") int idDirector, @RequestParam("m") int idMovie) 
+	public Optional<MovieFull> setDirector(@RequestParam("d") int idDirector, @RequestParam("m") int idMovie) 
 	{		
 		return movieService.setDirector(idDirector, idMovie);
 	}
@@ -128,7 +130,7 @@ public class MovieController {
 
 	@PutMapping("/modify")
 	@ResponseBody
-	public Optional<Movie> modifyMovie(@RequestBody Movie movie) 
+	public Optional<MovieFull> modifyMovie(@RequestBody MovieFull movie) 
 	{
 		return movieService.modifyMovie(movie);
 	}
